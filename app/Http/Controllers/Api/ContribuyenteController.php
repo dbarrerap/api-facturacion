@@ -49,7 +49,7 @@ class ContribuyenteController extends Controller
             $service = new ContribuyenteService();
             $response = $service->getContribuyente($id);
             //
-            return $this->createdResponse($response);
+            return $this->okResponse($response);
         } catch (\Throwable $th) {
             return $this->badRequestResponse($id, $th->getMessage());
         }
@@ -64,9 +64,9 @@ class ContribuyenteController extends Controller
             $service = new ContribuyenteService();
             $response = $service->updateContribuyente($id, $request->contribuyente);
             //
-            return $this->createdResponse($response);
+            return $this->okResponse($response);
         } catch (\Throwable $th) {
-            return $this->badRequestResponse($id, $th->getMessage());
+            return $this->unprocessableResponse($id, $th->getMessage());
         }
     }
 
