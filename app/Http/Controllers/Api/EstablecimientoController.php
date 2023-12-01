@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\Api\EstablecimientoService;
+use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 
 class EstablecimientoController extends Controller
 {
+    use RestResponse;
     /**
      * Display a listing of the resource.
      */

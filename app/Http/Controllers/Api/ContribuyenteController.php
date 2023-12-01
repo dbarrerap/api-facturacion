@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\Api\ContribuyenteService;
-use App\Trait\RestResponse;
+use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 
 class ContribuyenteController extends Controller
