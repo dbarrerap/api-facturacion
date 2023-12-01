@@ -24,36 +24,36 @@ trait RestResponse {
     // 200
     public function okResponse(mixed $data): JsonResponse
     {
-        return $this->successResponse($data);
+        return $this->success($data);
     }
 
     // 201
     public function createdResponse(mixed $data): JsonResponse
     {
-        return $this->successResponse($data, Response::HTTP_CREATED);
+        return $this->success($data, Response::HTTP_CREATED);
     }
 
     // 204
     public function noContentResponse(): JsonResponse
     {
-        return $this->successResponse([], Response::HTTP_NO_CONTENT);
+        return $this->success([], Response::HTTP_NO_CONTENT);
     }
 
     // 400
     public function badRequestResponse(mixed $data, string $message = ''): JsonResponse
     {
-        return $this->errorResponse($data, $message, Response::HTTP_BAD_REQUEST);
+        return $this->error($data, $message, Response::HTTP_BAD_REQUEST);
     }
 
     // 404
     public function notFoundResponse(mixed $data, string $message = ''): JsonResponse
     {
-        return $this->errorResponse($data, $message, Response::HTTP_NOT_FOUND);
+        return $this->error($data, $message, Response::HTTP_NOT_FOUND);
     }
 
     // 422
     public function unprocessableResponse(mixed $data, string $message = ''): JsonResponse
     {
-        return $this->errorResponse($data, $message, Response::HTTP_UNPROCESSABLE_ENTITY);
+        return $this->error($data, $message, Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 }
