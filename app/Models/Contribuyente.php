@@ -12,4 +12,9 @@ class Contribuyente extends Model
     use HasFactory, SoftDeletes;
 
     protected $collection = 'sis_contribuyente';
+    protected $primaryKey = '_id';
+
+    function establecimientos() {
+        return $this->hasMany(Establecimiento::class, 'contribuyente_id');
+    }
 }
