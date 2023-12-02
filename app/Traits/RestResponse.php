@@ -45,6 +45,12 @@ trait RestResponse {
         return $this->error($data, $message, Response::HTTP_BAD_REQUEST);
     }
 
+    // 403
+    public function forbiddenRequestResponse(mixed $data, string $message = ''): JsonResponse
+    {
+        return $this->error($data, $message, Response::HTTP_FORBIDDEN);
+    }
+
     // 404
     public function notFoundResponse(mixed $data, string $message = ''): JsonResponse
     {
