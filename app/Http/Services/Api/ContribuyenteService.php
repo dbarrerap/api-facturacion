@@ -26,6 +26,8 @@ class ContribuyenteService {
             $contribuyente->correo = $data['correo'];
             $contribuyente->telefono = $data['telefono'] ?? null;
             $contribuyente->movil = $data['movil'] ?? null;
+            $contribuyente->tipo_ambiente = $data['tipo_ambiente'] ?? '1'; // 1: Pruebas, 2: Produccion
+            $contribuyente->obligado_contabilidad = $data['obligado_contabilidad'] ?? 'NO';
             $contribuyente->save();
             //
             return $contribuyente;
@@ -47,13 +49,11 @@ class ContribuyenteService {
     function updateContribuyente(string $id, array $data) {
         try {
             $contribuyente = Contribuyente::findOrFail($id);
-            $contribuyente->numero_documento = $data['numero_documento'];
             $contribuyente->razon_social = $data['razon_social'];
-            $contribuyente->nombre_comercial = $data['nombre_comercial'];
             $contribuyente->correo = $data['correo'];
             $contribuyente->telefono = $data['telefono'] ?? null;
             $contribuyente->movil = $data['movil'] ?? null;
-            $contribuyente->direccion = $data['direccion'];
+            $contribuyente->tipo_ambiente = $data['tipo_ambiente'] ?? '1'; // 1: Pruebas, 2: Produccion
             $contribuyente->save();
             //
             return $contribuyente;
