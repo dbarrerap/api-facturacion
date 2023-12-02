@@ -22,9 +22,14 @@ class ProductoService {
             $producto->nombre = $data['nombre'];
             $producto->precio_unitario = $data['precio_unitario'];
             $producto->info_adicional = $data['info_adicional'] ?? null;
-            $producto->tarifa_iva = $data['tarifa_iva'];
+            $producto->iva_codigo = $data['iva_codigo'];
+            $producto->iva_tarifa = $data['iva_tarifa'];
+            $producto->iva_valor = $data['iva_valor'];
             $producto->ice = $data['ice'] ?? false;
-            $producto->codigo_ice = $data['codigo_ice'] ?? null;
+            $producto->ice_codigo = $data['ice_codigo'] ?? null;
+            $producto->ice_porcentaje = $data['ice_porcentaje'] ?? null;
+            $producto->ice_valor = $data['ice_valor'] ?? null;
+            $producto->save();
             //
             return $producto;
         } catch (\Throwable $th) {
@@ -49,9 +54,14 @@ class ProductoService {
             $producto->nombre = $data['nombre'];
             $producto->precio_unitario = $data['precio_unitario'];
             $producto->info_adicional = $data['info_adicional'] ?? null;
-            $producto->tarifa_iva = $data['tarifa_iva'];
+            $producto->iva_codigo = $data['iva_codigo'];
+            $producto->iva_tarifa = $data['iva_tarifa'];
+            $producto->iva_valor = $data['iva_valor'];
             $producto->ice = $data['ice'] ?? false;
-            $producto->codigo_ice = $data['codigo_ice'] ?? null;
+            $producto->ice_codigo = $data['ice_codigo'] ?? null;
+            $producto->ice_porcentaje = $data['ice_porcentaje'] ?? null;
+            $producto->ice_valor = $data['ice_valor'] ?? null;
+            $producto->save();
             //
             return $producto;
         } catch (\Throwable $th) {
