@@ -14,6 +14,10 @@ class Factura extends Model
     protected $collection = 'fac_factura';
     protected $primaryKey = '_id';
 
+    function contribuyente() {
+        return $this->belongsTo(Contribuyente::class);
+    }
+
     function detalles() {
         return $this->hasMany(FacturaDetalle::class);
     }
