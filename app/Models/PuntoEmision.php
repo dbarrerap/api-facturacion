@@ -12,6 +12,7 @@ class PuntoEmision extends Model
     use HasFactory, SoftDeletes;
 
     protected $collection = 'sis_ptoemision';
+    protected $primaryKey = '_id';
 
     function establecimiento() {
         return $this->belongsTo(Establecimiento::class, 'establecimiento_id');

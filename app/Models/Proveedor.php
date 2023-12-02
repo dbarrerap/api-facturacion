@@ -10,6 +10,7 @@ use MongoDB\Laravel\Eloquent\SoftDeletes;
 class Proveedor extends Model
 {
     use HasFactory, SoftDeletes;
+    protected $primaryKey = '_id';
 
     protected $collection = 'inv_proveedores';
 }
