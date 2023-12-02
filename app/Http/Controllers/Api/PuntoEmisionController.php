@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\Api\PuntoEmisionService;
+use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 
 class PuntoEmisionController extends Controller
 {
+    use RestResponse;
     /**
      * Display a listing of the resource.
      */

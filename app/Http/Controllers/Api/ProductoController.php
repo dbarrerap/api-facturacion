@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Services\Api\ProductoService;
+use App\Traits\RestResponse;
 use Illuminate\Http\Request;
 
 class ProductoController extends Controller
 {
+    use RestResponse;
     /**
      * Display a listing of the resource.
      */
@@ -29,7 +31,7 @@ class ProductoController extends Controller
     {
         try {
             $service = new ProductoService();
-            $response = $service->setProducto($request->data, $request->contribuyente);
+            $response = $service->setProducto($request->data, $request->proveedor, $request->contribuyente);
             //
             return $this->createdResponse($response);
         } catch (\Throwable $th) {
@@ -46,7 +48,7 @@ class ProductoController extends Controller
             $service = new ProductoService();
             $response = $service->getProducto($id);
             //
-            return $this->createdResponse($response);
+            return $this->okResponse($response);
         } catch (\Throwable $th) {
             return $this->badRequestResponse($id, $th->getMessage());
         }
@@ -61,7 +63,7 @@ class ProductoController extends Controller
             $service = new ProductoService();
             $response = $service->updateProducto($id, $request->data);
             //
-            return $this->createdResponse($response);
+            return $this->okResponse($response);
         } catch (\Throwable $th) {
             return $this->badRequestResponse($id, $th->getMessage());
         }
@@ -74,9 +76,9 @@ class ProductoController extends Controller
     {
         try {
             $service = new ProductoService();
-            $response = $service->deleteProduct($id);
+            $service->deleteProduct($id);
             //
-            return $this->createdResponse($response);
+            return $this->noContentResponse();
         } catch (\Throwable $th) {
             return $this->badRequestResponse($id, $th->getMessage());
         }
