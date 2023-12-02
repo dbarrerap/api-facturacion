@@ -26,6 +26,7 @@ class ProductoService {
             $producto->ice = $data['ice'] ?? false;
             $producto->codigo_ice = $data['codigo_ice'] ?? null;
             //
+            return $producto;
         } catch (\Throwable $th) {
             throw new \Exception($th->getMessage());
         }
