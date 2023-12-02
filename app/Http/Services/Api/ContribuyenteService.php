@@ -26,8 +26,8 @@ class ContribuyenteService {
             $contribuyente->correo = $data['correo'];
             $contribuyente->telefono = $data['telefono'] ?? null;
             $contribuyente->movil = $data['movil'] ?? null;
-            //
             $contribuyente->save();
+            //
             return $contribuyente;
         } catch (\Throwable $th) {
             throw new \Exception($th->getMessage());
@@ -54,8 +54,8 @@ class ContribuyenteService {
             $contribuyente->telefono = $data['telefono'] ?? null;
             $contribuyente->movil = $data['movil'] ?? null;
             $contribuyente->direccion = $data['direccion'];
-            //
             $contribuyente->save();
+            //
             return $contribuyente;
         } catch (\Throwable $th) {
             throw new \Exception($th->getMessage());

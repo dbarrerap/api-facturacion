@@ -50,6 +50,7 @@ class PuntoEmisionService {
             $puntoEmision->nota_debito = $data['nota_debito'];
             $puntoEmision->guia_remision = $data['guia_remision'];
             $puntoEmision->estado = $data['estado'] ?? 'A'; // A: Abierto, C: Cerrado
+            $puntoEmision->save();
             //
             return $puntoEmision;
         } catch (\Throwable $th) {

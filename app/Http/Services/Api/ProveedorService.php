@@ -26,6 +26,7 @@ class ProveedorService {
             $proveedor->telefono = $data['telefono'];
             $proveedor->web = $data['web'] ?? null;
             $proveedor->email = $data['email'] ?? null;
+            $proveedor->save();
             //
             return $proveedor;
         } catch (\Throwable $th) {
@@ -51,6 +52,7 @@ class ProveedorService {
             $proveedor->telefono = $data['telefono'];
             $proveedor->web = $data['web'] ?? null;
             $proveedor->email = $data['email'] ?? null;
+            $proveedor->save();
             //
             return $proveedor;
         } catch (\Throwable $th) {
