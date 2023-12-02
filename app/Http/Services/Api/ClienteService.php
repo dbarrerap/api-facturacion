@@ -6,7 +6,16 @@ use App\Models\Cliente;
 
 class ClienteService {
     function getClientes(array $filter, int|null $perPage, int $page) {
-        $clientes = Cliente::query();
+        $clientes = Cliente::query()
+        ->where('contribuyente_id', $filter['contribuyente']['_id'])
+        ->when(
+            isset($filter['razon_social']),
+            fn ($q) => $q->where('razon_social', 'like', '%' . $filter['razon_social'] . '%')
+        )
+        ->when(
+            isset($filter['numero_documento']),
+            fn ($q) => $q->where('numero_documento', 'like', '%' . $filter['numero_documento'] . '%')
+        );
 
         return (!is_null($perPage))
             ? $clientes->paginate($perPage, ['*'], 'page', $page)
