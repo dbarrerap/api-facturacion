@@ -13,9 +13,11 @@ class ProductoService {
             : $productos->get();
     }
 
-    function setProducto(array $data, array $contribuyente) {
+    function setProducto(array $data, array $proveedor, array $contribuyente) {
         try {
             $producto = new Producto();
+            $producto->contribuyente_id = $contribuyente['_id'];
+            $producto->proveedor_id = $proveedor['_id'];
             $producto->codigo = $data['codigo'];
             $producto->nombre = $data['nombre'];
             $producto->precio_unitario = $data['precio_unitario'];
@@ -23,7 +25,6 @@ class ProductoService {
             $producto->tarifa_iva = $data['tarifa_iva'];
             $producto->ice = $data['ice'] ?? false;
             $producto->codigo_ice = $data['codigo_ice'] ?? null;
-            $producto->contribuyente_id = $contribuyente['_id'];
             //
         } catch (\Throwable $th) {
             throw new \Exception($th->getMessage());
