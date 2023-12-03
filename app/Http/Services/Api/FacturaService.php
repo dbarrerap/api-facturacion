@@ -49,11 +49,11 @@ class FacturaService {
             $factura->clave_acceso = $clave_acceso;
             $factura->forma_pago = $data['forma_pago'];
             $factura->base_ice = $data['base_ice'] ?? 0;
-            $factura->base_iva = $data['base_iva'];
-            $factura->base_cero = $data['base_cero'];
-            $factura->descuento = $data['descuento'];
-            $factura->ice_valor = $data['ice_valor'] ?? null;
-            $factura->iva_valor = $data['iva_valor'];
+            $factura->ice_valor = $data['ice_valor'] ?? 0;
+            $factura->base_iva = $data['base_iva'] ?? 0;
+            $factura->iva_valor = $data['iva_valor'] ?? 0;
+            $factura->base_cero = $data['base_cero'] ?? 0;
+            $factura->descuento = $data['descuento'] ?? 0;
             $factura->subtotal = $data['subtotal']; // SUM base_iva, base_cero
             $factura->total = $data['total']; // SUM subtotal, iva_valor
             $factura->observaciones = $data['observaciones'] ?? null;
