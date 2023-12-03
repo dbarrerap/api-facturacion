@@ -32,8 +32,8 @@ __POST api/clientes/store__ almacena un nuevo cliente. Recibe 2 parametros: `dat
 * `data`: Es un array asociativo (objeto) con las siguientes propiedades del Cliente: `tipo_documento`, `numero_documento`, `razon_social`, `direccion` (opcional), `telefono`, `email`, `fecha_nacimiento` (opcional).
 * `contribuyente`: Es un array asociativo (objeto) con los datos del Contribuyente.
 
-__GET api/clientes/show/<id>__ devuelve los datos de un Cliente especificado por el parametro `id`.
+__GET api/clientes/show/{id}__ devuelve los datos de un Cliente especificado por el parametro `id`.
 
-__PUT api/clientes/update/<id>__ actualiza los datos de un Cliente especificado por el parametro `id`. Los parametros actualizables del Cliente son `razon_social`, `direccion`, `telefono`, `email`, `fecha_nacimiento`.
+__PUT api/clientes/update/{id}__ actualiza los datos de un Cliente especificado por el parametro `id`. Los parametros actualizables del Cliente son `razon_social`, `direccion`, `telefono`, `email`, `fecha_nacimiento`.
 
-__DELETE api/clientes/destroy/<id>__ elimina un Cliente especificado por el parametro `id`.
+__DELETE api/clientes/destroy/{id}__ elimina un Cliente especificado por el parametro `id`.
