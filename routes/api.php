@@ -25,10 +25,59 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::apiResource('contribuyentes', ContribuyenteController::class);
-Route::apiResource('establecimientos', EstablecimientoController::class);
-Route::apiResource('puntosemision', PuntoEmisionController::class);
-Route::apiResource('proveedores', ProveedorController::class);
-Route::apiResource('productos', ProductoController::class);
-Route::apiResource('clientes', ClienteController::class);
-Route::apiResource('facturas', FacturaController::class);
+Route::group(['controller' => ContribuyenteController::class, 'prefix' => 'contribuyentes'], function () {
+    Route::post('index', 'index');
+    Route::post('store', 'store');
+    Route::get('show/{id}', 'show');
+    Route::put('update/{id}', 'update');
+    Route::delete('delete/{id}', 'destroy');
+});
+
+Route::group(['controller' => EstablecimientoController::class, 'prefix' => 'establecimientos'], function () {
+    Route::post('index', 'index');
+    Route::post('store', 'store');
+    Route::get('show/{id}', 'show');
+    Route::put('update/{id}', 'update');
+    Route::delete('delete/{id}', 'destroy');
+});
+
+Route::group(['controller' => PuntoEmisionController::class, 'prefix' => 'puntosemision'], function () {
+    Route::post('index', 'index');
+    Route::post('store', 'store');
+    Route::get('show/{id}', 'show');
+    Route::put('update/{id}', 'update');
+    Route::delete('delete/{id}', 'destroy');
+});
+
+Route::group(['controller' => ProveedorController::class, 'prefix' => 'proveedores'], function () {
+    Route::post('index', 'index');
+    Route::post('store', 'store');
+    Route::get('show/{id}', 'show');
+    Route::put('update/{id}', 'update');
+    Route::delete('delete/{id}', 'destroy');
+});
+
+Route::group(['controller' => ProductoController::class, 'prefix' => 'productos'], function () {
+    Route::post('index', 'index');
+    Route::post('store', 'store');
+    Route::get('show/{id}', 'show');
+    Route::put('update/{id}', 'update');
+    Route::delete('delete/{id}', 'destroy');
+});
+
+Route::group(['controller' => ClienteController::class, 'prefix' => 'clientes'], function () {
+    Route::post('index', 'index');
+    Route::post('store', 'store');
+    Route::get('show/{id}', 'show');
+    Route::put('update/{id}', 'update');
+    Route::delete('delete/{id}', 'destroy');
+
+});
+
+Route::group(['controller' => FacturaController::class, 'prefix' => 'facturas'], function () {
+    Route::post('index', 'index');
+    Route::post('store', 'store');
+    Route::get('show/{id}', 'show');
+    Route::put('update/{id}', 'update');
+    Route::delete('delete/{id}', 'destroy');
+});
