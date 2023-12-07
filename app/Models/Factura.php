@@ -18,6 +18,14 @@ class Factura extends Model
         return $this->belongsTo(Contribuyente::class);
     }
 
+    function establecimiento() {
+        return $this->belongsTo(Establecimiento::class, 'establecimiento', 'numero');
+    }
+
+    function punto_emision() {
+        return $this->belongsTo(PuntoEmision::class, 'punto_emision', 'numero');
+    }
+
     function detalles() {
         return $this->hasMany(FacturaDetalle::class);
     }
