@@ -22,10 +22,12 @@ class ContribuyenteService {
             $contribuyente = new Contribuyente();
             $contribuyente->tipo_documento = $data['tipo_documento'] ?? 'RUC';  // RUC, CEDULA, PASAPORTE
             $contribuyente->numero_documento = $data['numero_documento'];
-            $contribuyente->razon_social = $data['razon_social'];
+            $contribuyente->razon_social = $data['razon_social'];  // Direccion de Matriz
+            $contribuyente->direccion = $data['direccion'];
             $contribuyente->correo = $data['correo'];
             $contribuyente->telefono = $data['telefono'] ?? null;
             $contribuyente->movil = $data['movil'] ?? null;
+            $contribuyente->contribuyente_especial = $data['contribuyente_especial'] ?? 'NO';
             $contribuyente->tipo_ambiente = $data['tipo_ambiente'] ?? '1'; // 1: Pruebas, 2: Produccion
             $contribuyente->obligado_contabilidad = $data['obligado_contabilidad'] ?? 'NO';
             $contribuyente->save();

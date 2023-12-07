@@ -18,7 +18,7 @@ class EstablecimientoService {
             $establecimiento = new Establecimiento();
             $establecimiento->numero = $data['numero'] ?? '001';
             $establecimiento->nombre_comercial = $data['nombre_comercial'] ?? null;
-            $establecimiento->direccion = $data['direccion'];
+            $establecimiento->direccion = $data['direccion'];  // Direccion de Establecimiento
             $establecimiento->estado = 'A'; // A: Abierto, C: Cerrado
             $establecimiento->contribuyente_id = $contribuyente['_id'];
             $establecimiento->save();
