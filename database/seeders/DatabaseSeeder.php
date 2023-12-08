@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CatalogoSeeder::class,
             ClienteSeeder::class,
+            TipoErrorSeeder::class,
         ]);
     }
 }
