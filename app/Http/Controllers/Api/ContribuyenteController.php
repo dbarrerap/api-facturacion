@@ -19,6 +19,8 @@ class ContribuyenteController extends Controller
         $perPage = $request->paginate['perPage'] ?? null;
         $page = $request->paginate['page'] ?? 1;
 
+        $filter['user'] = $request->user()->_id;
+
         $service = new ContribuyenteService();
         $response = $service->getContribuyentes($filter, $perPage, $page);
         return $this->okResponse($response);
@@ -31,7 +33,7 @@ class ContribuyenteController extends Controller
     {
         try {
             $service = new ContribuyenteService();
-            $response = $service->setContribuyente($request->contribuyente);
+            $response = $service->setContribuyente($request->contribuyente, $request->user());
             //
             return $this->createdResponse($response);
         } catch (\Throwable $th) {

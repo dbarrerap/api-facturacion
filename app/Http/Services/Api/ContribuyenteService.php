@@ -7,6 +7,7 @@ use App\Models\Contribuyente;
 class ContribuyenteService {
     function getContribuyentes(array $filter, int|null $perPage, int $page) {
         $contribuyentes = Contribuyente::query()
+        ->where('usuario', $filter['user'])
         ->when(
             isset($filter['razon_social']),
             fn ($q) => $q->where('razon_social', 'like', '%' . $filter['razon_social'] . '%')
@@ -17,7 +18,7 @@ class ContribuyenteService {
             : $contribuyentes->get();
     }
 
-    function setContribuyente(array $data) {
+    function setContribuyente(array $data, array $user) {
         try {
             $contribuyente = new Contribuyente();
             $contribuyente->tipo_documento = $data['tipo_documento'] ?? 'RUC';  // RUC, CEDULA, PASAPORTE
@@ -30,6 +31,7 @@ class ContribuyenteService {
             $contribuyente->contribuyente_especial = $data['contribuyente_especial'] ?? 'NO';
             $contribuyente->tipo_ambiente = $data['tipo_ambiente'] ?? '1'; // 1: Pruebas, 2: Produccion
             $contribuyente->obligado_contabilidad = $data['obligado_contabilidad'] ?? 'NO';
+            $contribuyente->usuario = $user['_id'];
             $contribuyente->save();
             //
             return $contribuyente;
