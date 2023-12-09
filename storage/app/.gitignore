@@ -1,3 +1,11 @@
 *
 !public/
 !.gitignore
+!reportes/
+!reportes/*
+!comprobantes/
+!comprobantes/generados/
+!comprobantes/firmados/
+!comprobantes/autorizados/
+!comprobantes/RIDE/
+!firmador/
