@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\ClienteController;
 use App\Http\Controllers\Api\ContribuyenteController;
+use App\Http\Controllers\Api\EmpleadoController;
 use App\Http\Controllers\Api\EstablecimientoController;
 use App\Http\Controllers\Api\FacturaController;
 use App\Http\Controllers\Api\ProductoController;
@@ -47,6 +48,14 @@ Route::group(['controller' => EstablecimientoController::class, 'prefix' => 'est
 });
 
 Route::group(['controller' => PuntoEmisionController::class, 'prefix' => 'puntosemision'], function () {
+    Route::post('index', 'index');
+    Route::post('store', 'store');
+    Route::get('show/{id}', 'show');
+    Route::put('update/{id}', 'update');
+    Route::delete('delete/{id}', 'destroy');
+});
+
+Route::group(['controller' => EmpleadoController::class, 'prefix' => 'empleados', 'middleware' => 'auth:sanctum'], function () {
     Route::post('index', 'index');
     Route::post('store', 'store');
     Route::get('show/{id}', 'show');
