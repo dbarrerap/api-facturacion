@@ -17,6 +17,8 @@ class Establecimiento extends Model
     protected $table = 'sis_establecimientos';
     protected $primaryKey = '_id';
 
+    protected $guarded = [];
+
     function contribuyente() {
         return $this->belongsTo(Contribuyente::class, 'contribuyente_id');
     }

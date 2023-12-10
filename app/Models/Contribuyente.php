@@ -17,6 +17,8 @@ class Contribuyente extends Model
     protected $table = 'sis_contribuyentes';
     protected $primaryKey = '_id';
 
+    protected $guarded = [];
+
     function establecimientos() {
         return $this->hasMany(Establecimiento::class, 'contribuyente_id');
     }

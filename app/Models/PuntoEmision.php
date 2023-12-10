@@ -17,6 +17,8 @@ class PuntoEmision extends Model
     protected $table = 'sis_ptoemision';
     protected $primaryKey = '_id';
 
+    protected $guarded = [];
+
     function establecimiento() {
         return $this->belongsTo(Establecimiento::class, 'establecimiento_id');
     }
