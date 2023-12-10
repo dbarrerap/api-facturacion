@@ -39,15 +39,15 @@ Route::group(['controller' => ContribuyenteController::class, 'prefix' => 'contr
     Route::delete('delete/{id}', 'destroy');
 });
 
-Route::group(['controller' => EstablecimientoController::class, 'prefix' => 'establecimientos'], function () {
-    Route::post('index', 'index')->middleware('auth:sanctum');
+Route::group(['controller' => EstablecimientoController::class, 'prefix' => 'establecimientos', 'middleware' => 'auth:sanctum'], function () {
+    Route::post('index', 'index');
     Route::post('store', 'store');
     Route::get('show/{id}', 'show');
     Route::put('update/{id}', 'update');
     Route::delete('delete/{id}', 'destroy');
 });
 
-Route::group(['controller' => PuntoEmisionController::class, 'prefix' => 'puntosemision'], function () {
+Route::group(['controller' => PuntoEmisionController::class, 'prefix' => 'puntosemision', 'middleware' => 'auth:sanctum'], function () {
     Route::post('index', 'index');
     Route::post('store', 'store');
     Route::get('show/{id}', 'show');
@@ -63,7 +63,7 @@ Route::group(['controller' => EmpleadoController::class, 'prefix' => 'empleados'
     Route::delete('delete/{id}', 'destroy');
 });
 
-Route::group(['controller' => ProveedorController::class, 'prefix' => 'proveedores'], function () {
+Route::group(['controller' => ProveedorController::class, 'prefix' => 'proveedores', 'middleware' => 'auth:sanctum'], function () {
     Route::post('index', 'index');
     Route::post('store', 'store');
     Route::get('show/{id}', 'show');
@@ -71,7 +71,7 @@ Route::group(['controller' => ProveedorController::class, 'prefix' => 'proveedor
     Route::delete('delete/{id}', 'destroy');
 });
 
-Route::group(['controller' => ProductoController::class, 'prefix' => 'productos'], function () {
+Route::group(['controller' => ProductoController::class, 'prefix' => 'productos', 'middleware' => 'auth:sanctum'], function () {
     Route::post('index', 'index');
     Route::post('store', 'store');
     Route::get('show/{id}', 'show');
@@ -79,7 +79,7 @@ Route::group(['controller' => ProductoController::class, 'prefix' => 'productos'
     Route::delete('delete/{id}', 'destroy');
 });
 
-Route::group(['controller' => ClienteController::class, 'prefix' => 'clientes'], function () {
+Route::group(['controller' => ClienteController::class, 'prefix' => 'clientes', 'middleware' => 'auth:sanctum'], function () {
     Route::post('index', 'index');
     Route::post('store', 'store');
     Route::get('show/{id}', 'show');
@@ -88,7 +88,7 @@ Route::group(['controller' => ClienteController::class, 'prefix' => 'clientes'],
 
 });
 
-Route::group(['controller' => FacturaController::class, 'prefix' => 'facturas'], function () {
+Route::group(['controller' => FacturaController::class, 'prefix' => 'facturas', 'middleware' => 'auth:sanctum'], function () {
     Route::post('index', 'index');
     Route::post('store', 'store');
     Route::get('show/{id}', 'show');
