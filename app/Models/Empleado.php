@@ -16,11 +16,14 @@ class Empleado extends Model
 
     // protected $collection = 'sis_empleados';
     protected $table = 'sis_empleados';
+    protected $primaryKey = '_id';
 
-    protected function nombre_completo(): Attribute {
+    protected $guarded = [];
+
+    protected function nombreCompleto(): Attribute {
         // return "{$this->nombres} {$this->apellidos}";
         return Attribute::make(
-            get: fn($model) => "{$model->nombres} {$model->apellidos}"
+            get: fn(mixed $value, array $attributes) => "{$attributes['nombres']} {$attributes['apellidos']}"
         );
     }
 

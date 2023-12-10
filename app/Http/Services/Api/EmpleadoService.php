@@ -56,7 +56,13 @@ class EmpleadoService {
                 'email' => $empleado->email,
                 'password' => bcrypt($data['password'])
             ]);
-            //
+
+            // $token = $user->createToken('myapptoken')->plainTextToken;
+
+            // $empleadoArr = $empleado->toArray();
+            // $empleadoArr['token'] = $token;
+            // //
+            // return $empleadoArr;
             return $empleado;
         } catch (\Throwable $th) {
             throw new \Exception($th->getMessage());
