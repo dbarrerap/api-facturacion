@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('sis_contribuyentes', function (Blueprint $table) {
             $table->id('_id');
             $table->string('tipo_documento', 64);
-            $table->string('numero_documento', 64);
+            $table->string('numero_documento', 64)->unique();
             $table->text('razon_social');
             $table->text('direccion');
             $table->string('correo');
@@ -23,11 +23,8 @@ return new class extends Migration
             $table->string('contribuyente_especial', 2)->default('NO');
             $table->string('tipo_ambiente', 1)->default(1);
             $table->string('obligado_contabilidad', 2)->default('NO');
-            $table->unsignedBigInteger('usuario_id');
             $table->timestamps();
             $table->softDeletes();
-            //
-            $table->foreign('usuario_id')->references('_id')->on('users');
         });
     }
 

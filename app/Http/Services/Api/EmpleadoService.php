@@ -4,6 +4,7 @@ namespace App\Http\Services\Api;
 
 use App\Models\Empleado;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class EmpleadoService {
     function getEmpleados(array $filter, int|null $perPage, int $page) {
@@ -32,10 +33,12 @@ class EmpleadoService {
     }
 
     function setEmpleado(array $data, array $contribuyente, array $establecimiento) {
+        DB::beginTransaction();
         try {
             $empleado = new Empleado();
             $empleado->contribuyente_id = $contribuyente['_id'];
             $empleado->establecimiento_id = $establecimiento['_id'];
+            // $empleado->user_id = $user['_id'];
             $empleado->nombres = $data['nombres'];
             $empleado->apellidos = $data['apellidos'];
             $empleado->tipo_documento = $data['tipo_documento'];
@@ -45,26 +48,24 @@ class EmpleadoService {
             $empleado->fecha_nacimiento = $data['fecha_nacimiento'];
             $empleado->telefono_fijo = $data['telefono_fijo'] ?? null;
             $empleado->telefono_movil = $data['telefono_movil'] ?? null;
-            $empleado->email = $data['email'] ?? null;
+            $empleado->correo = $data['correo'] ?? null;
             $empleado->discapacitado = $data['discapacitado'];
             $empleado->tipo_discapacidad = $data['tipo_discapacidad'] ?? null;
             $empleado->porcentaje_discapacidad = $data['porcentaje_discapacidad'] ?? null;
             $empleado->save();
 
-            User::create([
+            $user = new User([
                 'name' => $empleado->nombre_completo,
-                'email' => $empleado->email,
+                'email' => $empleado->correo,
                 'password' => bcrypt($data['password'])
             ]);
 
-            // $token = $user->createToken('myapptoken')->plainTextToken;
-
-            // $empleadoArr = $empleado->toArray();
-            // $empleadoArr['token'] = $token;
-            // //
-            // return $empleadoArr;
+            $empleado->user()->save($user);
+            DB::commit();
+            //
             return $empleado;
         } catch (\Throwable $th) {
+            DB::rollBack();
             throw new \Exception($th->getMessage());
         }
     }

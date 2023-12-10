@@ -27,16 +27,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/register', [AuthController::class, 'register']);
+// Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
-Route::group(['controller' => ContribuyenteController::class, 'prefix' => 'contribuyentes', 'middleware' => 'auth:sanctum'], function () {
+Route::group(['controller' => ContribuyenteController::class, 'prefix' => 'contribuyentes'], function () {
     Route::post('index', 'index');
     Route::post('store', 'store');
     Route::get('show/{id}', 'show');
-    Route::put('update/{id}', 'update');
-    Route::delete('delete/{id}', 'destroy');
+    Route::put('update/{id}', 'update')->middleware('aut:sanctum');
+    Route::delete('delete/{id}', 'destroy')->middleware('aut:sanctum');
 });
 
 Route::group(['controller' => EstablecimientoController::class, 'prefix' => 'establecimientos', 'middleware' => 'auth:sanctum'], function () {

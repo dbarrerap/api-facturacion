@@ -4,6 +4,7 @@ namespace App\Http\Services\Api;
 
 use App\Models\Contribuyente;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 
 class ContribuyenteService {
     function getContribuyentes(array $filter, int|null $perPage, int $page) {
@@ -20,14 +21,9 @@ class ContribuyenteService {
     }
 
     function setContribuyente(array $data) {
+        DB::beginTransaction();
         try {
-            $user = User::create([
-                'name' => $data['razon_social'],
-                'email' => $data['correo'],
-                'password' => bcrypt($data['password'])
-            ]);
-
-            // Manejar el anexo de Certificado.
+            // TODO: Manejar el anexo de Certificado.
 
             $contribuyente = new Contribuyente();
             $contribuyente->tipo_documento = $data['tipo_documento'] ?? 'RUC';  // RUC, CEDULA, PASAPORTE
@@ -42,11 +38,20 @@ class ContribuyenteService {
             $contribuyente->obligado_contabilidad = $data['obligado_contabilidad'] ?? 'NO';
             $contribuyente->certificado = null;
             $contribuyente->clave_certificado = null;
-            $contribuyente->usuario_id = $user['_id'];
             $contribuyente->save();
+
+            $user = new User([
+                'name' => $contribuyente->razon_social,
+                'email' => $contribuyente->correo,
+                'password' => bcrypt($data['password'])
+            ]);
+
+            $contribuyente->user()->save($user);
+            DB::commit();
             //
             return $contribuyente;
         } catch (\Throwable $th) {
+            DB::rollBack();
             throw new \Exception($th->getMessage());
         }
     }

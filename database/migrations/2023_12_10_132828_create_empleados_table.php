@@ -24,7 +24,7 @@ return new class extends Migration
             $table->date('fecha_nacimiento');
             $table->string('telefono_fijo')->nullable();
             $table->string('telefono_movil')->nullable();
-            $table->string('email')->nullable();
+            $table->string('correo')->nullable();
             $table->boolean('discapacitado')->default(false);
             $table->string('tipo_discapacidad')->nullable();
             $table->integer('porcentaje_discapacidad')->nullable();

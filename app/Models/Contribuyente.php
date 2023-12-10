@@ -22,4 +22,8 @@ class Contribuyente extends Model
     function establecimientos() {
         return $this->hasMany(Establecimiento::class, 'contribuyente_id');
     }
+
+    function user() {
+        return $this->morphOne(User::class, 'userable');
+    }
 }

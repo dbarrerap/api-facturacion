@@ -27,4 +27,8 @@ class Empleado extends Model
         );
     }
 
+    function user() {
+        return $this->morphOne(User::class, 'userable');
+    }
+
 }
