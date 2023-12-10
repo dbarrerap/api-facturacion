@@ -33,7 +33,7 @@ class ContribuyenteController extends Controller
     {
         try {
             $service = new ContribuyenteService();
-            $response = $service->setContribuyente($request->contribuyente, $request->user());
+            $response = $service->setContribuyente($request->contribuyente);
             //
             return $this->createdResponse($response);
         } catch (\Throwable $th) {

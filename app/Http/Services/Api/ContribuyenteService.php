@@ -3,6 +3,7 @@
 namespace App\Http\Services\Api;
 
 use App\Models\Contribuyente;
+use App\Models\User;
 
 class ContribuyenteService {
     function getContribuyentes(array $filter, int|null $perPage, int $page) {
@@ -18,8 +19,16 @@ class ContribuyenteService {
             : $contribuyentes->get();
     }
 
-    function setContribuyente(array $data, array $user) {
+    function setContribuyente(array $data) {
         try {
+            $user = User::create([
+                'name' => $data['razon_social'],
+                'email' => $data['correo'],
+                'password' => bcrypt($data['password'])
+            ]);
+
+            // Manejar el anexo de Certificado.
+
             $contribuyente = new Contribuyente();
             $contribuyente->tipo_documento = $data['tipo_documento'] ?? 'RUC';  // RUC, CEDULA, PASAPORTE
             $contribuyente->numero_documento = $data['numero_documento'];
@@ -31,6 +40,8 @@ class ContribuyenteService {
             $contribuyente->contribuyente_especial = $data['contribuyente_especial'] ?? 'NO';
             $contribuyente->tipo_ambiente = $data['tipo_ambiente'] ?? '1'; // 1: Pruebas, 2: Produccion
             $contribuyente->obligado_contabilidad = $data['obligado_contabilidad'] ?? 'NO';
+            $contribuyente->certificado = null;
+            $contribuyente->clave_certificado = null;
             $contribuyente->usuario_id = $user['_id'];
             $contribuyente->save();
             //
