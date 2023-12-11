@@ -40,6 +40,10 @@ __POST api/contribuyentes/store__ Permite el registro de un Contribuyente y la a
 
 __ATENCION__: Las rutas a continuacion usan autenticacion, por lo que el contribuyente debe haber iniciado sesion previamente.
 
+__PUT api/contribuyente/update/{id}__
+
+__DELETE api/contribuyentes/{id}__
+
 ## Establecimiento
 __POST api/contribuyentes/index__
 
